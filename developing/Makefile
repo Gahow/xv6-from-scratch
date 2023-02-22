@@ -1,4 +1,7 @@
-OBJS = start.o boot.o
+OBJS = boot/boot.o \
+       boot/start.o \
+       kernel/main.o \
+       kernel/uart.o
 
 LINKER = linker.ld
 IMAGE = kernel.img
@@ -16,17 +19,28 @@ CFLAGS += -g
 QEMU = qemu-system-riscv64
 QEMUOPTS = -nographic -machine virt -bios none -kernel $(IMAGE)
 
+GDBPORT = 1234
+
 all: $(OBJS) $(LINKER)
 	$(LD) -T $(LINKER) $(OBJS) -o $(IMAGE)
 
-start.o: start.c
+boot/boot.o: boot/boot.S
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-boot.o: boot.S
+boot/start.o: boot/start.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+kernel/main.o: kernel/main.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+kernel/uart.o: kernel/uart.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 run: all
 	$(QEMU) $(QEMUOPTS)
+
+debug: all
+	$(QEMU) $(QEMUOPTS) -gdb tcp::$(GDBPORT) -S
 
 clean:
 	rm -fv $(IMAGE) *.o
