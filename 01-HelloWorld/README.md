@@ -1,6 +1,6 @@
 # 01-Hello World
 
-In the first chapter, we will boot our OS and make it print "Hello world" in
+In this chapter, we will boot our OS and make it print "Hello world" in
 the screen.
 
 ## Prerequisite
