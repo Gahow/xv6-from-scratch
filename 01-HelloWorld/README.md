@@ -5,12 +5,10 @@ the screen.
 
 ## Prerequisite
 
-- basic knowledge of [linker script]
-(https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html)
-- [RISC-V manual]
-(https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)
-- [GNU make manual]
-(https://www.gnu.org/software/make/manual/make.html)
+- basic knowledge of
+[linker script](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html)
+- [RISC-V manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)
+- [GNU make manual](https://www.gnu.org/software/make/manual/make.html)
 
 ## Code
 
