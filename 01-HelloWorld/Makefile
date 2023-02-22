@@ -10,7 +10,6 @@ LD = riscv64-unknown-elf-ld
 CFLAGS  = -ffreestanding -nostdlib
 CFLAGS += -mcmodel=medany
 CFLAGS += -Wall -Wextra
-CFLAGS += -Iinclude
 CFLAGS += -g
 
 QEMU = qemu-system-riscv64
