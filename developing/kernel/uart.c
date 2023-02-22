@@ -2,7 +2,7 @@
 #include <uart.h>
 
 int putchar(int c) {
-    w_reg(RHR, c);
+    w_reg(THR, c);
     return c;
 }
 

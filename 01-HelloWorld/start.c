@@ -1,12 +1,12 @@
 #define UART0 0x10000000L   // UART's address
 
-#define RHR 0     // Receive Holding Register
+#define THR 0     // Receive Holding Register
 
 #define REG(r) ((volatile unsigned char *) (UART0 + r))
 #define w_reg(r, v) (*(REG(r)) = (v))
 
 int putchar(int c) {
-    w_reg(RHR, c);
+    w_reg(THR, c);
     return c;
 }
 
