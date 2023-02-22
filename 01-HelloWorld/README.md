@@ -9,6 +9,7 @@ the screen.
 https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_chapter/ld_3.html)
 - [RISC-V assembly](https://shakti.org.in/docs/risc-v-asm-manual.pdf)
 - [GNU make manual](https://www.gnu.org/software/make/manual/make.html)
+- [QEMU documentation](https://www.qemu.org/docs/master/system/qemu-manpage.html)
 
 ## Code
 
