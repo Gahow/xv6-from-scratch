@@ -20,10 +20,10 @@ https://github.com/qemu/qemu/blob/79b677d658d3d35e1e776826ac4abb28cdce69b8/hw/ri
 ## Code
 
 First, we modify `start.c`, add a series of functions to read or write M-level
-register. You can follow the comment before `start()`, learn the use of these
+registers. You can follow the comment before `start()` to learn the use of these
 registers, and do some bit set to transfer to supervisor mode.
 
-Second, we add `uart.c` and create a function `uartinit()` to set UART, a
+Second, we add `uart.c` and create a function `uartinit()` to set UART chip, a
 function `getchar()` to receive user input. You can read the
 [UART registers](http://byterunner.com/16550.html) to get the infomation you
 need.
