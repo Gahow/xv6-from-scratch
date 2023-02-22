@@ -43,6 +43,6 @@ debug: all
 	$(QEMU) $(QEMUOPTS) -gdb tcp::$(GDBPORT) -S
 
 clean:
-	rm -fv $(IMAGE) *.o
+	rm -fv $(IMAGE) *.o **/*.o
 
 .PHONY: clean
