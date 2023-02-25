@@ -1,6 +1,4 @@
 #include <types.h>
-#include <string.h>
-#include <kernel.h>
 #include <uart.h>
 
 void uartinit() {
@@ -38,22 +36,9 @@ int getchar() {
     }
 }
 
-void print(const char *str) {
-    while (*str) {
-        putchar((int) *str);
-        str++;
+void print(const char *s) {
+    while (*s) {
+        putchar((int) *s);
+        s++;
     }
-}
-
-void printint(uint64 n) {
-    char buf[128];
-    int i;
-
-    i = 0;
-    do {
-        buf[i++] = n % 10 + '0';
-    } while ((n /= 10) != 0);
-    buf[i++] = '\0';
-    reverse(buf);
-    print(buf);
 }

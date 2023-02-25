@@ -7,8 +7,6 @@ SECTIONS {
     .text ALIGN(0x1000) : {
         *(.boot);
         *(.text .text.*);
-        . = ALIGN(0x1000);
-        PROVIDE(_etext = .);
     }
 
     .rodata ALIGN(0x1000) : {
@@ -21,10 +19,6 @@ SECTIONS {
 
     .bss ALIGN(0x1000) : {
         *(.bss .bss.*);
-        . = ALIGN(0x1000);
         PROVIDE(_stack = . + 0x1000);
     }
-
-    . = ALIGN(0x1000);
-    PROVIDE(_end = .);
 }

@@ -1,11 +1,7 @@
-ASMS = boot/boot.o
-OBJS = boot/start.o \
+OBJS = boot/boot.o \
+       boot/start.o \
        kernel/main.o \
-       kernel/uart.o \
-       kernel/panic.o \
-       mm/vm.o \
-       mm/kalloc.o \
-       lib/string.o \
+       kernel/uart.o
 
 LINKER = linker.ld
 IMAGE = kernel.img
@@ -25,13 +21,19 @@ QEMUOPTS = -nographic -machine virt -bios none -kernel $(IMAGE)
 
 GDBPORT = 1234
 
-all: $(ASMS) $(OBJS) $(LINKER)
-	$(LD) -T $(LINKER) $(ASMS) $(OBJS) -o $(IMAGE)
+all: $(OBJS) $(LINKER)
+	$(LD) -T $(LINKER) $(OBJS) -o $(IMAGE)
 
 boot/boot.o: boot/boot.S
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-%.o: %.c
+boot/start.o: boot/start.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+kernel/main.o: kernel/main.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+kernel/uart.o: kernel/uart.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 run: all

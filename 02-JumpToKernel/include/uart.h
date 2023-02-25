@@ -1,7 +1,5 @@
-#ifndef _UART_H
-#define _UART_H
-
-#include <types.h>
+#ifndef UART_H
+#define UART_H
 
 #define UART0 0x10000000L   // UART's address
 
@@ -27,7 +25,6 @@
 void    uartinit();
 int     putchar(int c);
 int     getchar();
-void    print(const char *str);
-void    printint(uint64 n);
+void    print(const char *s);
 
 #endif
