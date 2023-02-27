@@ -1,10 +1,6 @@
 #ifndef _UART_H
 #define _UART_H
 
-#include <types.h>
-
-#define UART0 0x10000000L   // UART's address
-
 #define THR 0       // Transmit Holding Register
 #define RHR 0       // Receive Holding Register
 #define IER 1       // Interrupt Enable Register
@@ -27,7 +23,5 @@
 void    uartinit();
 int     putchar(int c);
 int     getchar();
-void    print(const char *str);
-void    printint(uint64 n);
 
 #endif

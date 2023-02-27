@@ -1,42 +1,60 @@
 #include <types.h>
 #include <string.h>
 #include <uart.h>
+#include <printf.h>
 #include <mm.h>
 
-extern char _etext[];
+extern pgtb_t kernel_pgtb;
+
+void print_pgtb(pgtb_t pg, int level);
 
 void main() {
     int c;
-    pgtb_t pgtb;
-    pte_t *pte;
 
     uartinit();
-    print("Hello world!\n");
+    printf("Hello world!\n");
 
     mem_init();
-    pgtb = (pgtb_t) kalloc();
-    memset(pgtb, 0, PGSIZE);
-    kvmmap(pgtb, (uint64) _etext, PHYSTOP - (uint64) _etext, (uint64) _etext,
-            PTE_R | PTE_W);
-    pte = walk(pgtb, (uint64) _etext, 0);
-    // printf("%lld => %lld\n", (uint64) _etext, PTE2PA(*pte));
-    printint((uint64) _etext);
-    print(" => ");
-    printint((uint64) PTE2PA(*pte));
-    print("\n");
+    kvminit();
+
+    printf("page table %p\n", kernel_pgtb);
+    print_pgtb(kernel_pgtb, 0);
 
     while (1) {
         c = getchar();
         if (c != -1) {
             switch (c) {
                 case 8: case 127:
-                    print("\b \b");
+                    putchar('\b');
+                    putchar(' ');
+                    putchar('\b');
                     break;
                 case 10: case 13:
-                    print("\n");
+                    putchar('\n');
                     break;
                 default:
                     putchar(c);
+            }
+        }
+    }
+}
+
+void print_pgtb(pgtb_t pg, int level) {
+    int i, j;
+    pte_t pte;
+
+    for (i = 0; i < 8; i++) {
+        pte = pg[i];
+        if (pte & PTE_V) {
+            for (j = 0; j <= level; j++) {
+                printf("-- ");
+            }
+            uint64 child = PTE2PA(pte);
+            printf("%d: pte %p, pa %p\n", i, pte, child);
+            if (level == 2) {
+                continue;
+            } else {
+                print_pgtb((pgtb_t) child, level + 1);
             }
         }
     }

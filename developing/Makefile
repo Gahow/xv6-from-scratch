@@ -6,6 +6,7 @@ OBJS = boot/start.o \
        mm/vm.o \
        mm/kalloc.o \
        lib/string.o \
+       lib/printf.o \
 
 LINKER = linker.ld
 IMAGE = kernel.img

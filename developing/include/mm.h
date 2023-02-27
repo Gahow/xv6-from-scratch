@@ -1,14 +1,9 @@
 #ifndef _MM_H
 #define _MM_H
 
-#include <types.h>
-
-#define KERNELBASE      0x80000000
 #define MAXVA           (1L << (9 + 9 + 9 + 12 - 1))
 #define PGSHIFT         12
 #define PGSIZE          (1 << PGSHIFT)
-#define MEMSIZE         (128 * 1024 * 1024)
-#define PHYSTOP         (KERNELBASE + MEMSIZE)
 #define PGMASK          (PGSIZE - 1)
 #define PTE_V           (1 << 0)
 #define PTE_R           (1 << 1)
@@ -32,5 +27,7 @@ void *kalloc();
 void    kvmmap(pgtb_t pgtb, uint64 va, uint64 sz, uint64 pa, int perm);
 int     mappg(pgtb_t pgtb, uint64 va, uint64 sz, uint64 pa, int perm);
 pte_t   *walk(pgtb_t pgtb, uint64 va, int alloc);
+pgtb_t  kvmmake();
+void    kvminit();
 
 #endif

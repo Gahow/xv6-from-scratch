@@ -1,8 +1,8 @@
 #include <types.h>
 #include <kernel.h>
 #include <string.h>
+#include <memlayout.h>
 #include <mm.h>
-#include <uart.h>
 
 extern char _end[];
 

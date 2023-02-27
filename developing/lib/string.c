@@ -12,19 +12,6 @@ void *memset(void *s, int c, int n) {
     return s;
 }
 
-/* char *to_string(uint64 n) {
-    char buf[512];
-    int i;
-
-    i = 0;
-    do {
-        buf[i++] = n % 10 + '0';
-    } while ((n /= 10) != 0);
-    buf[i++] = '\0';
-    reverse(buf);
-    return buf;
-} */
-
 void reverse(char *str) {
     int n;
     int i, j;

@@ -1,7 +1,8 @@
 #include <kernel.h>
+#include <printf.h>
 #include <uart.h>
 
 void panic(const char *str) {
-    print(str);
+    printf(str);
     for (;;) ;
 }
